@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- jQuery -->
+    <script src="../librerias/jquery/jquery-3.6.0.min.js"></script>
+    <!-- BS4 JavaScript -->
+    <script src="../librerias/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Popper JS -->
+    <script src="../librerias/popper/popper.min.js"></script>
+    <!--  BS4 CSS -->
+    <link href="../librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos adicionales -->
+    <link href="../css/extra.css" rel="stylesheet">
+    <!-- Script para cambiar la validación por defecto -->
+    <script src="../js/validacion_main.js"></script>
+    <!-- Script para manejar la adicion de una seccion Avistamiento -->
+    <script src="../js/agregar_seccion.js"></script>
+    <!-- Script para manejar la adicion de campos de imagen -->
+    <script src="../js/agregar_fotos.js"></script>
+    <!-- Script para manejar la interaccion entre falso submit y modal -->
+    <script src="../js/modal_submit.js"></script>
+    <!-- Script para mostrar regiones y comunas dinamicamente, ademas de verificarlas  -->
+    <script src="../js/verificar_region_comuna.js"></script>
+    <!-- Script para validar formato de fecha y hora  -->
+    <script src="../js/verificar_fecha_hora.js"></script>
+    <!-- Script para validar formato de numero de celular  -->
+    <script src="../js/verificar_celular.js"></script>
+    <!-- Script para validar formato de tipo y estado  -->
+    <script src="../js/verificar_tipo_estado.js"></script>
+    <!-- Script para validar formato de correo  -->
+    <script src="../js/verificar_email.js"></script>
+    <!-- Script para validar formato de nombre y sector  -->
+    <script src="../js/verificar_sector_nombre.js"></script>
+
+
+    <title>AvistApp - Informar avistamiento </title>
+</head>
+
+
+<body>
+    <header>
+        <div><a href="index.html"><img alt="Ladybug" id="logo" src="../images/ladybug.png"></a></div>
+        <div id="title">AvistApp</div>
+        <div id="bienvenida">¡Bienvenido al sistema de avistamientos más buena onda de Chile!</div>
+        <div aria-label="Menu" class="btn-group shadow-lg" role="group">
+            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="informar.html">
+                Informar avistamiento
+            </a>
+            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="avistamientos.html">
+                Ver listado de avistamientos
+            </a>
+            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="estadisticas.html">
+                Estadísticas
+            </a>
+        </div>
+    </header>
+
+    <section>
+        <h4 class="text-center"> Informar un nuevo avistamiento </h4>
+        <br>
+
+        <div class="container">
+            <form action="empty.py" class="needs-validation justify-content-center" id="informar" method="post" novalidate>
+                <div id="container-zona">
+                    <h5>Datos sobre la zona de avistamiento</h5>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Región</label>
+                            <select class="form-control" id="select-region" name="region" required>
+                                <option label="Seleccione una opción..."></option>
+
+                            </select>
+                            <div class="invalid-feedback">Campo obligatorio.</div>
+                        </div>
+                        <div class="col">
+                            <label>Comuna</label>
+                            <select class="form-control" id="select-comuna" name="comuna" required>
+                                <option label="Selecciona una opción..."></option>
+                            </select>
+                            <div class="invalid-feedback">Campo obligatorio.</div>
+                        </div>
+                        <div class="col">
+                            <label>Sector</label>
+                            <input class="form-control" id="sector" maxlength="100" name="sector"
+                                   placeholder="Indique el sector de avistamiento" size="200" type="text">
+                            <div class="invalid-feedback">La extensión máxima permitida es de 100 caracteres.</div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div id="container-contacto">
+                    <h5>Datos de contacto</h5>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Nombre</label>
+                            <input class="form-control" id="nombre" maxlength="200" name="nombre" placeholder="Nombre Apellido"
+                                   required size="100" type="text">
+                            <div class="invalid-feedback">Campo obligatorio, máximo 100 caracteres.</div>
+                        </div>
+                        <div class="col">
+                            <label>Email</label>
+                            <input class="form-control" id="email" name="email" placeholder="casilla@direccion.cl"
+                                   required size="100" type="email">
+                            <div class="invalid-feedback">Por favor, ingrese un email válido.</div>
+                        </div>
+                        <div class="col">
+                            <label>N° de celular</label>
+                            <input class="form-control" id="celular" name="celular" placeholder="56 9 1234 5678"
+                                   size="15" type="text">
+                            <div class="invalid-feedback">Por favor, ingrese un número móvil válido (11 dígitos).</div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <div id="container-avistamiento">
+                    <h5 class="titulo-avistamiento">Información de avistamiento</h5>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Día y hora</label>
+                            <input class="form-control dia-hora-avistamiento" maxlength="16" minlength="16"
+                                   name="dia-hora-avistamiento" placeholder="AAAA/MM/DD HH:MM" required size="20"
+                                   type="text">
+                            <div class="invalid-feedback">Por favor, ingrese una fecha y hora según el formato indicado
+                                (AAAA/MM/DD hora:minuto).
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Tipo de animal</label>
+                            <select class="form-control tipo-avistamiento" name="tipo-avistamiento" required>
+                                <option label="Selecione una opción..."></option>
+                                <option>Arácnido</option>
+                                <option>Insecto</option>
+                                <option>Miriápodo</option>
+                                <option>No sé</option>
+                            </select>
+                            <div class="invalid-feedback">Por favor, escoja una opción.</div>
+                        </div>
+                        <div class="col">
+                            <label>Estado</label>
+                            <select class="form-control estado-avistamiento" name="estado-avistamiento" required>
+                                <option label="Selecione una opción..."></option>
+                                <option>Vivo</option>
+                                <option>Muerto</option>
+                                <option>No sé</option>
+                            </select>
+                            <div class="invalid-feedback">Por favor, escoja una opción.</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Foto del animal</label>
+                            <input class="form-control foto-avistamiento" name="foto-avistamiento" required type="file">
+                            <p class="agregar-otra-foto" id="agregar-1"> Agregar otra foto </p>
+                            <div class="invalid-feedback">Debe ingresar al menos una foto del animal. <br><br></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+
+                <div class="form-row" id="container-agregar">
+                    <div class="col text-center">
+                        <button class="btn btn-warning text-center" id="agregar-avistamiento" type="button">
+                            Informar otro avistamiento en este sector
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-row" id="container-enviar">
+                    <div class="col text-center">
+                        <button class="btn btn-danger text-center" id="enviar-formulario"
+                                type="button">Enviar información de avistamiento
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Modal confirmar -->
+                <div aria-hidden="true" class="modal fade" id="submitModal" role="dialog"
+                     tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmacion">Confirmación de envío</h5>
+                                <button aria-label="Close" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Está seguro que desea enviar esta información?
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-warning" data-dismiss="modal" type="button">
+                                    No estoy seguro, quiero volver al formulario
+                                </button>
+                                <button class="btn btn-danger text-center" id="submit-real">
+                                    Sí, estoy total y absolutamente seguro
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal agradecimiento, volver -->
+                <div aria-hidden="true" class="modal fade" id="agradecimientoModal" role="dialog"
+                     tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="agradecimiento">Gracias</h5>
+                            </div>
+                            <div class="modal-body">
+                                Hemos recibido su información, muchas gracias por colaborar.
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-danger text-center" href="index.html">
+                                    Volver al inicio</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <br>
+        </div>
+        <br>
+    </section>
+
+    <footer>
+        <p class="container creditos">
+        <p class="text-center">Proyecto del curso CC5002 - Desarrollo de Aplicaciones Web.</p>
+        <p class="text-center">Alumno: Matías Vergara S.</p>
+        <br>
+        <p class="text-center"> Icono ''Ladybug'' creación de <a href="https://www.freepik.com" title="Freepik">
+            Freepik</a>, extraídos de <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+        <p class="text-center">Fotos extraídas de <a href="https://www.pexels.com/search/bug/" title="Pexels">www.pexels.com </a>
+        </p>
+        <br>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- jQuery -->
+    <script src="../librerias/jquery/jquery-3.6.0.min.js"></script>
+    <!-- BS4 JavaScript -->
+    <script src="../librerias/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Popper JS -->
+    <script src="../librerias/popper/popper.min.js"></script>
+    <!--  BS4 CSS -->
+    <link href="../librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Script para fotos clickeables que abren mas grandes -->
+    <script src="../js/detalle.js"></script>
+    <!-- Estilos adicionales -->
+    <link href="../css/extra.css" rel="stylesheet">
+    <!-- CSS especifico para el grid de fotos -->
+    <link href="../css/fotogrid.css" rel="stylesheet">
+    <title>AvistApp - Detalle de avistamiento</title>
+</head>
+<body>
+    <header>
+        <div><a href="index.html"><img alt="Ladybug" id="logo" src="../images/ladybug.png"></a></div>
+        <div id="title">AvistApp</div>
+        <div id="bienvenida">¡Bienvenido al sistema de avistamientos más buena onda de Chile!</div>
+
+        <div aria-label="Menu" class="btn-group shadow-lg" role="group">
+            <a href="informar.html" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                Informar avistamiento
+            </a>
+            <a href="avistamientos.html" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                Ver listado de avistamientos
+            </a>
+            <a href="estadisticas.html" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                Estadísticas
+            </a>
+        </div>
+    </header>
+
+    <section>
+        <div class="container lugar">
+        <h5 class="text-center titulo-lugar"> Avistamiento en La Florida, Región Metropolitana de Santiago </h5>
+        <h4 class="text-center subtitulo-lugar"> Centro Recreacional San Jorge </h4>
+        </div>
+        <br>
+        <div class="container informador">
+            <h5 class="text-center titulo-informador"> Datos del informante</h5>
+            <p class="text-center nombre-informador"> <strong>Nombre:</strong> Juan Sandías </p>
+            <p class="text-center email-informador"> <strong>Email:</strong> eljuanchosandiasrojas@gmail.com</p>
+            <p class="text-center celular-informador"> <strong>Celular:</strong> +569 6230 7628 </p>
+        </div>
+        <br>
+        <div class="container avistamiento">
+            <h5 class="text-center titulo-avistamiento">Avistamiento 1:  </h5>
+            <p class="text-center fecha-avistamiento"><strong>Fecha:</strong> 2021-03-16 </p>
+            <p class="text-center hora-avistamiento"><strong>Hora:</strong> 11:14 </p>
+            <p class="text-center tipo-avistamiento"><strong>Tipo:</strong> Insecto </p>
+            <p class="text-center estado-avistamiento"><strong>Estado:</strong> Vivo </p>
+            <p class="text-center fotos-avistamiento"><strong>Fotos:</strong></p>
+            <div class="row justify-content-center">
+                    <img class="foto-preview" src="../images/pexels-egor-kamelev-3819740.jpg" alt="Chinita sobre polen">
+                    <img class="foto-preview" src="../images/pexels-pixabay-121472.jpg" alt="Chinita en rama">
+                    <img class="foto-preview" src="../images/pexels-pixabay-36485%20(1).jpg" alt="Chinita emprendiendo vuelo">
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalfoto" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="foto-grande" src="../images/ladybug.png" alt="foto de un avistamiento en tamaño aumentado">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container menu-regresar text-center">
+            <div aria-label="Menu" class="btn-group shadow-lg" role="group">
+                <a href="avistamientos.html" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                    Volver al listado de avistamientos
+                </a>
+                <a href="index.html" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                    Regresar al inicio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="container creditos">
+        <p class="text-center">Proyecto del curso CC5002 - Desarrollo de Aplicaciones Web.</p>
+        <p class="text-center">Alumno: Matías Vergara S.</p>
+        <br>
+        <p class="text-center"> Icono ''Ladybug'' creación de <a href="https://www.freepik.com" title="Freepik">
+            Freepik</a>, extraídos de <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+        <p class="text-center">Fotos extraídas de <a href="https://www.pexels.com/search/bug/" title="Pexels"></a>
+            www.pexels.com </p>
+        <br>
+    </footer>
+</body>
+</html>
