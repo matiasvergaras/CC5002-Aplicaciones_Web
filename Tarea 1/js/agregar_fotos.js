@@ -15,7 +15,7 @@ $(document).ready(function () {
     setearFuncionAgregar();
     setearCampoObligatorio();
     //para cuando se agreguen nuevas visualizaciones
-    var botonAgregar = $('#agregar-avistamiento');
+    let  botonAgregar = $('#agregar-avistamiento');
     botonAgregar.click(function () {
         sleep(100);
         setearFuncionAgregar();
@@ -24,15 +24,15 @@ $(document).ready(function () {
 });
 
 function setearFuncionAgregar() {
-    var campos = document.querySelectorAll('.agregar-otra-foto');
-    var actualId = campos[campos.length - 1].id.split('-')[1];
+    let campos = document.querySelectorAll('.agregar-otra-foto');
+    let actualId = campos[campos.length - 1].id.split('-')[1];
     diccionarioFotos[actualId] = 1;
-    var texto = $(campos[campos.length - 1]);
+    let  texto = $(campos[campos.length - 1]);
     texto.unbind();
     texto.click(function () {
         if (diccionarioFotos[actualId] < 5) {
-            var otroArchivo = '<input type="file" class="form-control foto-avistamiento" name="foto-avistamiento">';
-
+            let name = "foto-avistamiento-"+actualId+"-"+ (diccionarioFotos[actualId] + 1)
+            let otroArchivo = '<input type="file" class="form-control foto-avistamiento" name=' + name + '>';
             texto.before(otroArchivo);
             diccionarioFotos[actualId] += 1;
         } else {
@@ -44,7 +44,7 @@ function setearFuncionAgregar() {
 }
 
 function setearCampoObligatorio() {
-    var campo = document.querySelector('.foto-avistamiento');
+    let  campo = document.querySelector('.foto-avistamiento');
     campo.setCustomValidity('Campo inicialmente vacío');
     $(campo).on('change', function(){
         if( campo.value ){

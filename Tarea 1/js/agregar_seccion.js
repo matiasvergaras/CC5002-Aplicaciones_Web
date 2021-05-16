@@ -9,42 +9,52 @@
  */
 
 
-var ultimaId = 1;
-var eliminados = 0;
+let ultimaId = 1;
+let eliminados = 0;
 
 $(document).ready(function () {
 
     //cada vez que se presione el boton, se debe agregar una nueva seccion avistamiento.
 
-    var botonAgregar = $('#agregar-avistamiento');
+    let botonAgregar = $('#agregar-avistamiento');
     botonAgregar.click(function () {
         agregarAvistamiento();
     });
 
     function agregarAvistamiento() {
-        var actualId = ultimaId + 1;
+        let actualId = ultimaId + 1;
 
-        var copiaSeccion = $('#container-avistamiento').clone(true, true);
+        let copiaSeccion = $('#container-avistamiento').clone(true, true);
         copiaSeccion[0].id = "container-avistamiento-" + actualId;
 
+        let diaHora = copiaSeccion[0].querySelector('.dia-hora-avistamiento');
+        diaHora.name = 'dia-hora-avistamiento-' + actualId;
 
-        var agregarFotos = copiaSeccion[0].querySelector('.agregar-otra-foto');
+        let tipoAnimal = copiaSeccion[0].querySelector( '.tipo-avistamiento');
+        tipoAnimal.name = 'tipo-avistamiento-' + actualId;
+
+        let estadoAnimal = copiaSeccion[0].querySelector('.estado-avistamiento');
+        estadoAnimal.name = 'estado-avistamiento-' + actualId;
+        
+        let agregarFotos = copiaSeccion[0].querySelector('.agregar-otra-foto');
         agregarFotos.id = 'agregar-' + actualId;
         agregarFotos.innerText = "Agregar otra foto";
         agregarFotos.style = "color:dodgerblue";
 
-        var fotos = copiaSeccion[0].querySelectorAll('.foto-avistamiento');
-        var contador = fotos.length;
+        let fotos = copiaSeccion[0].querySelectorAll('.foto-avistamiento');
+        let contador = fotos.length;
         while (contador > 1) {
             fotos[contador - 1].remove();
             contador = contador - 1;
         }
-        fotos[0].value = null;
 
-        tituloAvistamiento = copiaSeccion.find('.titulo-avistamiento');
+        fotos[0].value = null;
+        fotos[0].name = 'foto-avistamiento-' + actualId + '-1';
+
+        let tituloAvistamiento = copiaSeccion.find('.titulo-avistamiento');
         tituloAvistamiento[0].innerHTML += " " + actualId;
 
-        var botonEliminar = $(`<br><button type="button" id="eliminar-avistamiento-${actualId}" \
+        let botonEliminar = $(`<br><button type="button" id="eliminar-avistamiento-${actualId}" \
                 class="eliminar-avistamiento btn btn-warning text-center">Descartar avistamiento</button>`);
 
         copiaSeccion.append(botonEliminar);
