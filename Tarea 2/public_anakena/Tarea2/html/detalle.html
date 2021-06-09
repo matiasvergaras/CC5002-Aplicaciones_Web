@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- jQuery -->
+    <script src="../Tarea2/librerias/jquery/jquery-3.6.0.min.js"></script>
+    <!-- BS4 JavaScript -->
+    <script src="../Tarea2/librerias/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Popper JS -->
+    <script src="../Tarea2/librerias/popper/popper.min.js"></script>
+    <!--  BS4 CSS -->
+    <link href="../Tarea2/librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos adicionales -->
+    <link href="../Tarea2/css/extra.css" rel="stylesheet">
+   <!-- Script para fotos clickeables que abren mas grandes -->
+    <script src="../Tarea2/js/detalle.js"></script>
+    <!-- Estilos adicionales -->
+    <link href="../Tarea2/css/extra.css" rel="stylesheet">
+    <!-- CSS especifico para el grid de fotos -->
+    <link href="../Tarea2/css/fotogrid.css" rel="stylesheet">
+    <title>AvistApp - Detalle de avistamiento</title>
+</head>
+<body>
+    <header>
+        <div><a href="index.py"><img alt="Ladybug" id="logo" src="../Tarea2/images/ladybug.png"></a></div>
+        <div id="title">AvistApp</div>
+        <div id="bienvenida">¡Bienvenido al sistema de avistamientos más buena onda de Chile!</div>
+
+        <div aria-label="Menu" class="btn-group shadow-lg" role="group">
+            <a href="informar.py" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                Informar avistamiento
+            </a>
+            <a href="avistamientos.py" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                Ver listado de avistamientos
+            </a>
+            <a href="estadisticas.py" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                Estadísticas
+            </a>
+        </div>
+    </header>
+
+    <section>
+       {0}
+    </section>
+
+    <section>
+        <div class="container menu-regresar text-center">
+            <div aria-label="Menu" class="btn-group shadow-lg" role="group">
+                <a href="avistamientos.py" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                    Volver al listado de avistamientos
+                </a>
+                <a href="index.py" class="btn btn-outline-danger custom-btn" data-mdb-color="dark">
+                    Regresar al inicio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="container creditos">
+        <p class="text-center">Proyecto del curso CC5002 - Desarrollo de Aplicaciones Web.</p>
+        <p class="text-center">Alumno: Matías Vergara S.</p>
+        <br>
+        <p class="text-center"> Icono ''Ladybug'' creación de <a href="https://www.freepik.com" title="Freepik">
+            Freepik</a>, extraídos de <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+        <p class="text-center">Fotos extraídas de <a href="https://www.pexels.com/search/bug/" title="Pexels"></a>
+            www.pexels.com </p>
+        <br>
+    </footer>
+</body>
+</html>

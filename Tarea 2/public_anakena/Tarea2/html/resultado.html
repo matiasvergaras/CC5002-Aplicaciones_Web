@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- jQuery -->
+    <script src="../Tarea2/librerias/jquery/jquery-3.6.0.min.js"></script>
+    <!-- BS4 JavaScript -->
+    <script src="../Tarea2/librerias/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Popper JS -->
+    <script src="../Tarea2/librerias/popper/popper.min.js"></script>
+    <!--  BS4 CSS -->
+    <link href="../Tarea2/librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos adicionales -->
+    <link href="../Tarea2/css/extra.css" rel="stylesheet">
+    {0}
+    <title>AvistApp - Home</title>
+</head>
+
+<body>
+
+<header>
+    <div><a href="index.py"><img alt="Ladybug" id="logo" src="../Tarea2/images/ladybug.png"></a></div>
+    <div id="title">AvistApp</div>
+    <div id="bienvenida">¡Bienvenido al sistema de avistamientos más buena onda de Chile!</div>
+    <div aria-label="Menu" class="btn-group shadow-lg" role="group">
+        <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="informar.py">
+            Informar avistamiento
+        </a>
+        <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="avistamientos.py">
+            Ver listado de avistamientos
+        </a>
+        <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="estadisticas.py">
+            Estadísticas
+        </a>
+    </div>
+</header>
+
+
+<section>
+    <div class="alert alert-success" role="alert" id="exito-guardar"></div>
+    <div class="container">
+        <h4 class="text-center">{1}</h4>
+        <br>
+        <div class="text-center">{2}</div>
+    </div>
+</section>

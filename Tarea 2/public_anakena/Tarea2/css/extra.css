@@ -1,0 +1,92 @@
+
+header {
+    text-align: center;
+    padding: 24px;
+}
+
+#logo {
+    max-width: 180px;
+    height: auto;
+    border: none;
+}
+
+
+#title {
+    font-size: 50px;
+    color: #ec7171;
+    font-weight: 600;
+    width: auto;
+    margin: -20px auto 5px;
+    text-shadow: 0 0 2px #855757, 0 0 2px #855757;
+}
+
+.btn-outline-danger.custom-btn {
+    border-color: #850f0f;
+    color: #451515;
+
+}
+
+.table{
+    font-size: 14px;
+    max-width: 800px;
+}
+
+#bienvenida {
+    font-size: 25px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}
+
+.agregar-otra-foto{
+    color: dodgerblue;
+    text-decoration: underline;
+    text-decoration-color: dodgerblue;;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 7px;
+}
+
+.fila-clickeable{
+    cursor: pointer;
+}
+
+p {
+    margin:0px;
+}
+
+.creditos{
+    margin-top: 70px;
+}
+
+.imagen-graficos{
+    width: 60%;
+}
+
+.grafico{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#exito-guardar{
+    display: none;
+}
+
+.pagination{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination > li {
+    list-style-type: none;
+    border: 1px solid #d6d5d5;
+    margin: 0px;
+    padding: 4px 8px 4px 8px;
+}
+
+.titulo-avistamiento{
+    margin-top: 20px;
+}
