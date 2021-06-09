@@ -35,7 +35,7 @@ $(document).ready(function () {
 
         let estadoAnimal = copiaSeccion[0].querySelector('.estado-avistamiento');
         estadoAnimal.name = 'estado-avistamiento-' + actualId;
-        
+
         let agregarFotos = copiaSeccion[0].querySelector('.agregar-otra-foto');
         agregarFotos.id = 'agregar-' + actualId;
         agregarFotos.innerText = "Agregar otra foto";

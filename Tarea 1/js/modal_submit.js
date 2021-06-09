@@ -19,6 +19,5 @@ $(document).ready(function () {
     });
     $('#submit-real').click(function () {
         $("#submitModal").modal("hide");
-        $("#agradecimientoModal").modal();
     });
 });

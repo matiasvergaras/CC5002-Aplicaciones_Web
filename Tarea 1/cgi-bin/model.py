@@ -5,10 +5,12 @@
 import mysql.connector
 import hashlib
 from utils import raise_error
+from utils import raise_success
 import os
 import filetype
 
 MAX_FILE_SIZE = 10000 * 1000  # 10 MB
+
 
 class Avistamiento:
 
@@ -17,20 +19,21 @@ class Avistamiento:
             host=host,
             user=user,
             password=password,
-            database='tarea2'
+            database="cc500253_db"
         )
         self.cursor = self.db.cursor()
 
-    #data debe cumplir la forma:
-    #[comuna_id, dia_hora_informacion, sector, nombre, email, celular,
+    # data debe cumplir la forma:
+    # [comuna_id, dia_hora_informacion, sector, nombre, email, celular,
     #   [dia_hora_avistamiento, tipo, estado,
     #            [foto1, foto2, foto3, foto4, foto5]
     #   ]
     #   [dia_ora_avistamiento, tipo, estado,
     #            [foto1, foto2, foto3, foto4, foto5]
     #   ]
-    #]
+    # ]
     def insert_AV(self, data):
+        errores = []
         detalles = data[6]
         sql = f"""
              INSERT INTO avistamiento (comuna_id, dia_hora, sector, nombre, email, celular) 
@@ -47,37 +50,40 @@ class Avistamiento:
             self.cursor.execute(sql, detalle[0], detalle[1], detalle[2], av_new_id)
             self.db.commit()
             da_new_id = self.cursor.getlastrowid()
-            for fileobj in detalle[3]: #detalle[3] es una lista de fileobjs
+            for fileobj in detalle[3]:  # detalle[3] es una lista de fileobjs
                 filename = fileobj.filename
-                #verificamos que el archivo se haya subido
+                # verificamos que el archivo se haya subido
                 if not filename:
-                    raise_error(2, "Archivo no subido", av_new_id, da_new_id)
+                    errores.append((10, ''))
                 size = os.fstat(fileobj.file.fileno()).st_size
-                #verificamos que el archivo cumpla el tamaño solicitado
+                # verificamos que el archivo cumpla el tamaño solicitado
                 if size > MAX_FILE_SIZE:
-                    raise_error(3, "Archivo excede tamaño máximo permitido: {10MB}", av_new_id, da_new_id)
-                #contamos la cantidad de fotos actuales para crear un hash
+                    errores.append((11, filename))
+                # contamos la cantidad de fotos actuales para crear un hash
                 sql = """
                 SELECT COUNT(id)
                 FROM foto
                 """
                 self.cursor.execute(sql)
-                total = self.cursor.fetchall()[0][0] +1
+                total = self.cursor.fetchall()[0][0] + 1
                 hash_foto = str(total) + hashlib.sha256(filename.encode()).hexdigest()[0:30]
                 file_path = 'db_media/' + hash_foto
-                #guardamos la foto en el servidor para revisar su tipo
+                # guardamos la foto en el servidor para revisar su tipo
                 open(file_path, 'wb').write(fileobj.file.read())
                 tipo = filetype.guess(file_path)
-                if tipo.mime != 'image/jpg' and tipo.mime !='image/png' and tipo.mime !='image/jpeg':
+                if tipo.mime != 'image/jpg' and tipo.mime != 'image/png' and tipo.mime != 'image/jpeg':
                     os.remove(file_path)
-                    raise_error(4, "Error: Tipo de archivo incompatible", av_new_id, da_new_id)
+                    errores.append((12, filename))
                 sql = f"""
                 INSERT INTO foto (ruta_archivo, nombre_archivo, detalle_avistamiento_id) 
                 VALUES (%s, %s, %s)
                 """
                 self.cursor.execute(sql, file_path, filename, da_new_id)
                 self.db.commit()
-
+                if len(errores) > 0:
+                    raise_error(errores, av_new_id)
+                    return
+                raise_success()
 
     def get_5AV_photo(self):
         sql = f"""
@@ -99,7 +105,7 @@ class Avistamiento:
             """
             self.cursor.execute(sql)
             fetch = self.cursor.fetchall()
-            respuesta.append([avistamiento[1:], fetch[0][0] +fetch[0][1]])
+            respuesta.append([avistamiento[1:], fetch[0][0] + fetch[0][1]])
         return respuesta
 
     def get_comuna_region(self, nombre_comuna):

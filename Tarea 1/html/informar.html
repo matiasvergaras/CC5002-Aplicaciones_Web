@@ -40,17 +40,17 @@
 
 <body>
     <header>
-        <div><a href="index.html"><img alt="Ladybug" id="logo" src="../images/ladybug.png"></a></div>
+        <div><a href="index.py"><img alt="Ladybug" id="logo" src="../images/ladybug.png"></a></div>
         <div id="title">AvistApp</div>
         <div id="bienvenida">¡Bienvenido al sistema de avistamientos más buena onda de Chile!</div>
         <div aria-label="Menu" class="btn-group shadow-lg" role="group">
-            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="informar.html">
+            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="informar.py">
                 Informar avistamiento
             </a>
-            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="avistamientos.html">
+            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="avistamientos.py">
                 Ver listado de avistamientos
             </a>
-            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="estadisticas.html">
+            <a class="btn btn-outline-danger custom-btn" data-mdb-color="dark" href="estadisticas.py">
                 Estadísticas
             </a>
         </div>
@@ -61,7 +61,7 @@
         <br>
 
         <div class="container">
-            <form action="empty.py" class="needs-validation justify-content-center" id="informar" method="post" novalidate>
+            <form action="../cgi-bin/guardar.py" class="needs-validation justify-content-center" id="informar" method="post" novalidate>
                 <div id="container-zona">
                     <h5>Datos sobre la zona de avistamiento</h5>
                     <div class="form-row">
@@ -101,7 +101,7 @@
                         <div class="col">
                             <label>Email</label>
                             <input class="form-control" id="email" name="email" placeholder="casilla@direccion.cl"
-                                   required size="100" type="email">
+                                   required size="100" type="text">
                             <div class="invalid-feedback">Por favor, ingrese un email válido.</div>
                         </div>
                         <div class="col">
@@ -152,7 +152,7 @@
                     <div class="form-row">
                         <div class="col">
                             <label>Foto del animal</label>
-                            <input class="form-control foto-avistamiento" name="foto-avistamiento-1-1" required type="file">
+                            <input class="form-control foto-avistamiento" name="foto-avistamiento-1-1" required type="file" accept="image/png, image/jpeg">
                             <p class="agregar-otra-foto" id="agregar-1"> Agregar otra foto </p>
                             <div class="invalid-feedback">Debe ingresar al menos una foto del animal. <br><br></div>
                         </div>
@@ -206,21 +206,26 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Modal agradecimiento, volver -->
-                <div aria-hidden="true" class="modal fade" id="agradecimientoModal" role="dialog"
+                <!-- A partir de la tarea 2, ya no hay modal agradecimiento, si no que al tener éxito se
+                redirecciona hacia la portada y se muestra un mensaje de éxito allí. Pero si hay un error,
+                se muestra en informar y se permanece en el formulario -->
+                <!-- Modal error -->
+                <div aria-hidden="true" class="modal fade" id="errorModal" role="dialog"
                      tabindex="-1">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="agradecimiento">Gracias</h5>
+                                <h5 class="modal-title" id="error">Algo salió mal:</h5>
+                                <button aria-label="Close" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="modal-body">
-                                Hemos recibido su información, muchas gracias por colaborar.
+                            <div class="modal-body" id="modal-error-body">
                             </div>
                             <div class="modal-footer">
-                                <a class="btn btn-danger text-center" href="index.html">
-                                    Volver al inicio</a>
+                                <button class="btn btn-warning" data-dismiss="modal" type="button">
+                                    Volver al formulario</a>
+                                </button>
                             </div>
                         </div>
                     </div>

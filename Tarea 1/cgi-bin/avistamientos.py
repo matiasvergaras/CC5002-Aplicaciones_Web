@@ -6,6 +6,6 @@ print('Content-type: text/html\r\n\r\n')
 
 utf8stdout = open(1, 'w', encoding='utf-8', closefd=False)
 
-with open('html/informar.html', 'r', encoding='utf-8') as file:
+with open('html/avistamientos.html', 'r', encoding='utf-8') as file:
     s = file.read()
     print(s, file=utf8stdout)
